@@ -181,14 +181,17 @@ jobs:
       id: test-action
       uses: ./
 
+    - name: Save action output to file
+      env:
+        JOKE: ${{ steps.test-action.outputs.joke }}
+      run: echo "$JOKE" > joke_output.txt
+
     - name: Check action output
       id: check-action-output-value
       uses: classroom-resources/autograding-io-grader@v1
-      env:
-        JOKE_OUTPUT: ${{ steps.test-action.outputs.joke }}
       with:
         test-name: 'Check action output'
-        command: 'echo "$JOKE_OUTPUT"'
+        command: 'cat joke_output.txt'
         input: ''
         expected-output: '.+'
         comparison-method: 'regex'

@@ -16,7 +16,7 @@ Piuttosto che committare la directory `node_modules` (che causa problemi di dime
 
    ```json
    "scripts": {
-      // Script esistenti...
+     "test": "echo \"Error: no test specified\" && exit 1",
      "build": "ncc build src/main.js -o dist"
    }
    ```
